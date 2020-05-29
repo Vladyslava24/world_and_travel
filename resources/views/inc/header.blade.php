@@ -1,33 +1,18 @@
-<div class="contain">
-    <header>
-        <div class="part1">
-            <a class="logo-btn" href="{{route('landing')}}">
-                <div class="logo">
-                    <img src="/img/world.svg">
-                    <div class="logo-text">World&travel</div>
-                </div>
-            </a>
-            <nav>
-                <a class="menu-btn" href="{{route ('tour')}}">Тури</a>
-                <a class="menu-btn" href="{{route ('cruise')}}">Круїзи</a>
-                <a class="menu-btn" href="{{route ('sale')}}">Акції</a>
-                <a class="menu-btn" href="{{route ('about')}}">Про нас</a>
-                <a class="menu-btn" href="{{route ('contact')}}">Контакти</a>
-            </nav>
-        </div>
-        <div class="login-buttons">
-            @guest
-                <a class="btn login" href="{{route ('login')}}">Увійти</a>
-                <a class="btn sign-up" href="{{route ('register')}}">Зареєструватися</a>
-            @endguest
-
-            @auth
-                    <a class="btn login" href="{{route ('home')}}">Всі заявки</a>
-                    <a class="btn sign-up" href="{{route ('logout')}}">Вийти</a>
-            @endauth
-        </div>
-        <div class="nav-menu">
-            <a class="menu-burger">
+<header>
+    <div class="part1">
+        <a class="logo-btn" href="{{route('landing')}}">
+            <div class="logo">
+                <img src="/img/world.svg">
+                <div class="logo-text">World&travel</div>
+            </div>
+        </a>
+        <nav class="topnav" id="myTopnav">
+            <a class="menu-btn" href="{{route ('tour')}}">Тури</a>
+            <a class="menu-btn" href="{{route ('cruise')}}">Круїзи</a>
+            <a class="menu-btn" href="{{route ('sale')}}">Акції</a>
+            <a class="menu-btn" href="{{route ('about')}}">Про нас</a>
+            <a class="menu-btn" href="{{route ('contact')}}">Контакти</a>
+            <a class="menu-burger" href='javascript:void(0);' onclick="menu()">
                 <svg width="27" height="34" viewBox="0 0 27 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0)">
                         <path d="M25.2693 6.10262H1.73079C0.774668 6.10262 0 5.12712 0 3.92317C0 2.71923 0.774668 1.74365 1.73079 1.74365H25.2693C26.2253 1.74365 27 2.71916 27 3.92317C27 5.12718 26.2253 6.10262 25.2693 6.10262Z" fill="#2B1B19"/>
@@ -42,6 +27,17 @@
                     </defs>
                 </svg>
             </a>
-        </div>
-    </header>
-</div>
+        </nav>
+    </div>
+    <div class="login-buttons">
+        @guest
+            <a class="btn login" href="{{route ('login')}}">Увійти</a>
+            <a class="btn sign-up" href="{{route ('register')}}">Зареєструватися</a>
+        @endguest
+
+        @auth
+            <a class="btn login" href="{{route ('home')}}">Всі заявки</a>
+            <a class="btn sign-up" href="{{route ('logout')}}">Вийти</a>
+        @endauth
+    </div>
+</header>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_dark')
 
 @section('title')
     Тур
@@ -28,54 +28,29 @@
                 </div>
                 <p>11 травня, 7-14 ночей, 2 дорослих</p>
                 <div class="img-hotel">
-                    <div class="Slides">
-                        <div class="numbertext">1 / 6</div>
-                        <img src="/img/alexandre-chambon-aapSemzfsOk-unsplash.jpg" style="width:100%">
-                    </div>
-                    <div class="Slides">
-                        <div class="numbertext">2 / 6</div>
-                        <img src="/img/hello-lightbulb-YC8qqp50BdA-unsplash.jpg" style="width:100%">
-                    </div>
-                    <div class="Slides">
-                        <div class="numbertext">3 / 6</div>
-                        <img src="/img/cassie-gallegos-6wCWCPwmRJY-unsplash.jpg" style="width:100%">
-                    </div>
-                    <div class="Slides">
-                        <div class="numbertext">4 / 6</div>
-                        <img src="/img/francesca-saraco-_dS27XGgRyQ-unsplash.jpg" style="width:100%">
-                    </div>
-                    <div class="Slides">
-                        <div class="numbertext">5 / 6</div>
-                        <img src="/img/plqml-felipe-pelaquim-BmoOdR6YP9o-unsplash.jpg" style="width:100%">
-                    </div>
-                    <div class="Slides">
-                        <div class="numbertext">6 / 6</div>
-                        <img src="/img/runnyrem-LfqmND-hym8-unsplash.jpg" style="width:100%">
-                    </div>
+                    @php
+                        $image = '';
+                        if(count($tour->images)>0){
+                            $image = $tour->images[0]['img'];
+                        }
+                    @endphp
+                    @foreach($tour->images as $img)
+                        <div class="Slides">
+                            <!--<div class="numbertext">1 / 6</div> -->
+                            <img src="/pictures/tour/{{$img['img']}}" style="width:100%">
+                        </div>
+                    @endforeach
                     <a class="prev" onclick="plusSlides(-1)">❮</a>
                     <a class="next" onclick="plusSlides(1)">❯</a>
                     <div class="caption-container">
                         <p id="caption"></p>
                     </div>
                     <div class="row-2">
-                        <div class="column-2">
-                            <img class="demo cursor" src="/img/alexandre-chambon-aapSemzfsOk-unsplash.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
-                        </div>
-                        <div class="column-2">
-                            <img class="demo cursor" src="/img/hello-lightbulb-YC8qqp50BdA-unsplash.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
-                        </div>
-                        <div class="column-2">
-                            <img class="demo cursor" src="/img/cassie-gallegos-6wCWCPwmRJY-unsplash.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
-                        </div>
-                        <div class="column-2">
-                            <img class="demo cursor" src="/img/francesca-saraco-_dS27XGgRyQ-unsplash.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
-                        </div>
-                        <div class="column-2">
-                            <img class="demo cursor" src="/img/plqml-felipe-pelaquim-BmoOdR6YP9o-unsplash.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
-                        </div>
-                        <div class="column-2">
-                            <img class="demo cursor" src="/img/runnyrem-LfqmND-hym8-unsplash.jpg" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
-                        </div>
+                        @foreach($tour->images as $img)
+                            <div class="column-2">
+                                <img class="demo cursor" src="/pictures/tour/{{$img['img']}}" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -240,17 +215,19 @@
                     </div>
                     <div class="contact-info">
                         <div class="card-text">Ваші контакти</div>
-                        <form>
+                        <form action="{{route('tour-data-application', $tour->id)}}" method="POST">
+                            @csrf
+                            @include('inc.messages')
                             <div class="row-4">
                                 <div class="col-25">
                                     <label for="fname">Ім’я*</label>
-                                    <input type="text" id="fname" name="firstname" placeholder="Ведіть ваше ім’я">
+                                    <input type="text" id="name" name="name" placeholder="Ведіть ваше ім’я">
                                 </div>
                             </div>
                             <div class="row-4">
                                 <div class="col-25">
-                                    <label for="fname">Телефон*</label>
-                                    <input type="text" id="fname" name="firstname" placeholder="Ведіть ваш телефон">
+                                    <label for="fname">Email*</label>
+                                    <input type="text" id="phone" name="email" value="{{ old('email') }}" placeholder="Email*">
                                 </div>
                             </div>
                             <div class="row-4">

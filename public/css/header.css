@@ -1,18 +1,20 @@
+/*--------Головна---------*/
 /*---------header-------*/
-
 .part1 {
     display: flex;
-    justify-content: space-between;
 }
 header {
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0;
     width: 100%;
 }
 .logo {
     text-align: center;
     padding-top: 10px
+}
+.logo-btn {
+    text-decoration: none;
 }
 .logo img {
     width: 30%;
@@ -35,7 +37,9 @@ nav {
 }
 nav a {
     font-weight: 500;
-    padding: 35px 12px;
+    padding: 45px 12px;
+    padding-bottom: 38px;
+    font-size: 16px;
 }
 nav a:hover {
     background-color: #04313C;
@@ -75,18 +79,18 @@ nav a:hover {
     transition: background .5s;
     color: #fff;
 }
-.nav-menu {
+.menu-burger {
     display: none;
 }
-@media only screen and (max-width: 900px) {
+@media screen and (max-width: 900px) {
     .hero-div {
         top: 60%;
     }
-    .menu-btn {
-        display: none;;
-    }
     .login-buttons {
         display:none;
+    }
+    nav {
+        padding: 0;
     }
     .nav-menu {
         display:block;
@@ -95,5 +99,59 @@ nav a:hover {
     }
     header {
         padding: 20px 40px;
+    }
+    .topnav a {
+        display: none;
+    }
+    .topnav a.menu-burger {
+        display: block;
+        padding-top: 37px;
+        padding-right: 40px;
+        padding-left: 40px;
+        padding-bottom: 50px;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .topnav.responsive .menu-burger {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .logo-text {
+        font-size: 22px;
+    }
+    .logo {
+        width: 20%;
+        margin: 0;
+    }
+    .part1 {
+        display: block;
+        width: 100%;
+    }
+    .topnav.responsive a {
+        display: block;
+        text-align: center;
+    }
+    .topnav.responsive .menu-btn {
+        font-size: 30px;
+        padding: 15px;
+    }
+}
+@media screen and (max-width: 560px) {
+    .topnav a.menu-burger {
+        padding-top: 30px;
+        padding-right: 40px;
+        padding-left: 40px;
+        padding-bottom: 38px;
+    }
+    .logo-text {
+        font-size: 15px;
+    }
+    .logo {
+        width: 30%;
+    }
+    .logo img {
+        width: 33%;
     }
 }

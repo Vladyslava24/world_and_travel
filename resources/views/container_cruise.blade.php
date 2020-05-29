@@ -1,225 +1,70 @@
-@extends('layouts.containers')
+@extends('layouts.app_dark')
 
 @section('title')
     Круїзи
 @endsection
 
 @section('content')
-<div class="main">
-    <div class="banner">
+    <main>
         <div class="search">
-            <div id="tour"><span>Пошук круїзів</span></div>
-            <div class="container form">
+            <div class="title"><span>Пошук круїзів</span></div>
+            <div class="container-form">
                 <form>
                     <div class="forms">
-                        <div>
+                        <div class="form-block">
                             <div class="form_text"><span>Країна</span></div>
-                            <input class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
+                            <select class="form-control mr-sm-2"id="country" name="country">
+                                <option value="egypt">Єгипет</option>
+                                <option value="greece">Греція</option>
+                                <option value="spain">Іспанія</option>
+                                <option value="oae">ОАЕ</option>
+                                <option value="shri-lanka">Шрі-Ланка</option>
+                            </select>
                         </div>
-                        <div>
+                        <div class="form-block">
                             <div class="form_text">
                                 <span>Виїзд з</span>
                             </div>
-                            <input class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
+                            <select class="form-control mr-sm-2"id="country" name="country">
+                                <option value="kiev">Київ</option>
+                                <option value="dnipro">Дніпро</option>
+                                <option value="kharkiv">Харків</option>
+                                <option value="odesa">Одеса</option>
+                                <option value="vinitsia">Віниця</option>
+                                <option value="lviv">Львів</option>
+                            </select>
                         </div>
-                        <div>
+                        <div class="form-block">
                             <div class="form_text"><span>Тривалість</span></div>
-                            <input class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search">
+                            <input class="form-control date" type="date" name="calendar" value="2020-06-01"
+                                   max="2020-09-04" min="2020-05-29">
                         </div>
-                        <div class="form">
-                            <button>
-                                <span>Пошук</span>
-                            </button>
+                        <div class="form-block s">
+                            <a class="search-btn search" href="#">Пошук</a>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-</div>
-<div class="container content">
-    <div class="title">
-        <span>Всі круїзи</span>
-    </div>
-    <div class="row row1">
-        @foreach($cruises as $cruise)
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="picture" id="venecia">
-                    <div class="grey">
-                        <img src="pictures/cruise/{{$cruise->images[0]['img']}}" alt="{{$cruise->direction}}">
+        <div class="tours-container">
+            <div class="title">Всі круїзи</div>
+            <div class="items-container">
+                @foreach($cruises as $cruise)
+                <div class="cards-tours tour1">
+                    <img src="pictures/cruise/{{$cruise->images[0]['img']}}" alt="{{$cruise->direction}}">
+                    <div class="text-block">
+                        <h2>{{$cruise->direction}}</h2>
+                        <h3>на борту лайнера</h3>
+                        <h4>“{{$cruise->liner}}”</h4>
+                        <p>від {{$cruise->price}} UAH</p>
+                        <a class="search-btn more" href="{{route('cruise-data-one', $cruise->id)}}">Дізнатись більше</a>
                     </div>
-                    <span class="country">{{$cruise->direction}}</span>
-                    <br>
-                    <span class="liner">на борту лайнера</span>
-                    <br>
-                    <span class="liner">“{{$cruise->liner}}”</span>
-                    <br>
-                    <span class="price-c"> від {{$cruise->price}} UAH</span>
-                    <br>
-                    <button class="button"><span>Дізнатись більше</span></button>
                 </div>
+                @endforeach
             </div>
-            <div class="space"></div>
         </div>
-        @endforeach
-    </div>
 
-</div>
-        <!--<div class="space_mob"></div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="picture" id="stambul">
-                    <div class="grey">
-                        <img src="pictures/cruise/nother_europe.jpg" alt="#">
-                    </div>
-                    <span class="country">Північна Європа</span>
-                    <br>
-                    <span class="liner">на борту лайнера </span>
-                    <br>
-                    <span class="liner">“Ventura”</span>
-                    <br>
-                    <span class="price-c">від  7 518 UAH</span>
-                    <br>
-                    <button class="button"><span>Дізнатись більше</span></button>
-                </div>
-            </div>
-        </div>
-        <div class="space_mob"></div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="picture" id="dubai">
-                    <div class="grey">
-                        <img src="pictures/cruise/oae_per.jpg" alt="#">
-                    </div>
-                    <span class="country">ОАЕ і Перська Затока</span>
-                    <br>
-                    <span class="liner">на борту лайнера</span>
-                    <br>
-                    <span class="liner">“Costa Diadema”</span>
-                    <br>
-                    <span class="price-c">від 6 265 UAH</span>
-                    <br>
-                    <button class="button"><span>Дізнатись більше</span></button>
-                </div>
-            </div>
-        </div>
-        <div class="space_mob"></div>
-    </div>
-    <div class="space"></div>
-    <div class="row row2">
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="picture" id="hurgada">
-                    <div class="grey">
-                        <img src="pictures/cruise/caribs.jpg" alt="#">
-                    </div>
-                    <span class="country">Карибські острови</span>
-                    <br>
-                    <span class="liner">на борту лайнера</span>
-                    <br>
-                    <span class="liner">“Ecstasy”</span>
-                    <br>
-                    <span class="price-c">від 6 533 UAH</span>
-                    <br>
-                    <button class="button"><span>Дізнатись більше</span></button>
-                </div>
-            </div>
-        </div>
-        <div class="space_mob"></div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="picture" id="marsa-alam">
-                    <div class="grey">
-                        <img src="pictures/cruise/south-east-asia.jpg" alt="#">
-                    </div>
-                    <span class="country">Південно-Східна Азія</span>
-                    <br>
-                    <span class="liner">на борту лайнера</span>
-                    <br>
-                    <span class="liner"> “Diamond Princess”</span>
-                    <br>
-                    <span class="price-c">від 11 843 UAH</span>
-                    <br>
-                    <button class="button"><span>Дізнатись більше</span></button>
-                </div>
-            </div>
-        </div>
-        <div class="space_mob"></div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="picture" id="kastelorizo">
-                    <div class="grey">
-                        <img src="pictures/cruise/greek_italia.jpg" alt="#">
-                    </div>
-                    <span class="country">Греція + Італія</span>
-                    <br>
-                    <span class="liner">на борту лайнера</span>
-                    <br>
-                    <span class="liner">“Costa”</span>
-                    <br>
-                    <span class="price-c">від 34 215 UAH</span>
-                    <br>
-                    <button class="button"><span>Дізнатись більше</span></button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="space"></div>
-    <div class="row row3">
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="picture" id="antalia">
-                    <div class="grey">
-                        <img src="pictures/cruise/baltika.jpg" alt="#">
-                    </div>
-                    <span class="country">Балтика</span>
-                    <br>
-                    <span class="liner">на борту лайнера</span>
-                    <br>
-                    <span class="liner">“Norwegian Escape</span>
-                    <br>
-                    <span class="price-c">від  30 219 UAH</span>
-                    <br>
-                    <button class="button"><span>Дізнатись більше</span></button>
-                </div>
-            </div>
-        </div>
-        <div class="space_mob"></div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="picture" id="evia">
-                    <div class="grey">
-                        <img src="pictures/cruise/canars.jpg" alt="#">
-                    </div>
-                    <span class="country">Канарські острови</span>
-                    <br>
-                    <span class="liner">на борту лайнера</span>
-                    <br>
-                    <span class="liner">“AIDAmar”</span>
-                    <br>
-                    <span class="price-c">від  33 549 UAH</span>
-                    <br>
-                    <button class="button"><span>Дізнатись більше</span></button>
-                </div>
-            </div>
-        </div>
-        <div class="space_mob"></div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="picture" id="kollaga">
-                    <div class="grey">
-                        <img src="pictures/cruise/red-see.jpg" alt="#">
-                    </div>
-                    <span class="country">Червоне море</span>
-                    <br>
-                    <span class="liner">на борту лайнера</span>
-                    <br>
-                    <span class="liner">“Harmony G”</span>
-                    <br>
-                    <span class="price-c">від 25 000 UAH</span>
-                    <br>
-                    <button class="button"><span>Дізнатись більше</span></button>
-                </div>-->
 <div class="space_upper_footer"></div>
+    </main>
 @endsection
+

@@ -12,16 +12,15 @@ class ApplicationCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $popularTour;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(PopularTour $popularTour)
+    public function __construct()
     {
-        $this->popularTour = $popularTour;
+
     }
 
     /**

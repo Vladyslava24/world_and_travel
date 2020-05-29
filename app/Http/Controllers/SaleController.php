@@ -9,8 +9,7 @@ class SaleController extends Controller
 {
     public function allData(){
         $sale = new SpecialOffer();
-        //return view('messages', ['data' => contact->all()]);
-        return view('sales', ['sales' => $sale->orderBy('id', 'asc')->take(2)->get()]);
+        return view('sales', ['sales' => $sale->orderBy('id', 'asc')->where('id', '>', '4')->take(4)->get()]);
     }
     public function showOneSale($id){
         $sale = new SpecialOffer();

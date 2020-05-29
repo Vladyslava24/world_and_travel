@@ -12,4 +12,9 @@ class CruiseController extends Controller
         $cruise = new Cruise();
         return view('container_cruise', ['cruises' => $cruise->orderBy('id', 'asc')->take(9)->get()]);
     }
+
+    public function showOneCruise($id){
+        $cruise= new Cruise();
+        return view('cruise-data-one', ['cruise' => $cruise->find($id)]);
+    }
 }

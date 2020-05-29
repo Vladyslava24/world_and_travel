@@ -9,7 +9,7 @@ class TourController extends Controller
 {
     public function allData(){
         $tour = new Tour();
-        return view('container_tour', ['tour_containers' => $tour->orderBy('id', 'asc')->take(6)->get()]);
+        return view('container_tour', ['tour_containers' => $tour->orderBy('id', 'asc')->take(12)->get()]);
     }
 
     public function showOneTour($id){

@@ -7,6 +7,7 @@
     <title>@yield('title')</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,800;0,900;1,400;1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style_sales.css">
@@ -16,12 +17,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
 </head>
 <body>
-@include('inc.header')
+<div class="container">
+    @include('inc.header')
 
-@yield('content')
+        @yield('content')
 
-@include('inc.footer')
+    @include('inc.footer_light')
+</div>
+<script>menu();</script>
 <script>showSlides();</script>
 <script>showSlides1(1);</script>
 </body>
 </html>
+

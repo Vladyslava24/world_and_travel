@@ -1,12 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.app_light')
 
 @section('content')
     <main>
         <div class="login-container">
             <div class="login-div">
                 <div class="login-title">Реєстрація</div>
-                <!-- resources/views/auth/register.blade.php -->
                 <form method="POST" action="/register">
+                    @include('inc.messages')
                     @csrf
                     <div class="row-4">
                         <div class="col-25">
@@ -15,12 +15,7 @@
                     </div>
                     <div class="row-4">
                         <div class="col-25">
-                            <input type="text" id="lname" name="name" value="{{ old('name') }}" placeholder="Прізвище*">
-                        </div>
-                    </div>
-                    <div class="row-4">
-                        <div class="col-25">
-                            <input type="text" id="lname" name="email" value="{{ old('email') }}" placeholder="Email*">
+                            <input type="text" id="email" name="email" value="{{ old('email') }}" placeholder="Email*">
                         </div>
                     </div>
                     <div class="row-4">
@@ -52,36 +47,8 @@
                     </a>
                 </div>
                 <p class="login-p">Виконуючи реєстрацію, ви погоджуєтеся з нашими Умовами та Політикою конфіденційності.</p>
-                <div class="register">Маєте акаунт?<a class="register-btn" href="#"><strong>УВІЙТИ</strong></a></div>
+                <div class="register">Маєте акаунт?<a class="register-btn" href="/login"><strong>УВІЙТИ</strong></a></div>
             </div>
         </div>
     </main>
-    <!-- resources/views/auth/register.blade.php -->
-    <!--<form method="POST" action="/register">
-
-
-        <div>
-            Name
-            <input type="text" name="name">
-        </div>
-
-        <div>
-            Email
-            <input type="email" name="email" >
-        </div>
-
-        <div>
-            Password
-            <input type="password" name="password">
-        </div>
-
-        <div>
-            Confirm Password
-            <input type="password" name="password_confirmation">
-        </div>
-
-        <div>
-            <button type="submit">Register</button>
-        </div>
-    </form>-->
 @endsection

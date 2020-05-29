@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Jost', sans-serif;
     font-size: 15px;
     line-height: 1.6;
     color: #04313C;
@@ -36,10 +36,31 @@ hr {
     margin: 0 auto;
 }
 
+nav a {
+    font-weight: 500;
+    padding: 45px 12px;
+    padding-bottom: 38px;
+    font-size: 16px;
+}
 
-
-
-
+footer {
+    background-color: #04313C;
+}
+footer li {
+    color: #fff;
+}
+footer .logo-text {
+    color: #fff;
+    font-weight: 100;
+}
+@media screen and (max-width: 900px) {
+    footer a{
+        color: #fff;
+    }
+    footer .menu-footer .btn-footer {
+        color:#fff;
+    }
+}
 
 
 /* Section */

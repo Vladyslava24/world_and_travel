@@ -1,4 +1,4 @@
-@extends('layouts.sales')
+@extends('layouts.app_dark')
 
 @section('title')
     Акція
@@ -28,54 +28,23 @@
                 </div>
                 <p>11 травня, 7-14 ночей, 2 дорослих</p>
                 <div class="img-hotel">
-                    <div class="Slides">
-                        <div class="numbertext">1 / 6</div>
-                        <img src="img_desc_sale/a1.jpg" style="width:100%">
-                    </div>
-                    <div class="Slides">
-                        <div class="numbertext">2 / 6</div>
-                        <img src="img_desc_sale/c6.jpg" style="width:100%">
-                    </div>
-                    <div class="Slides">
-                        <div class="numbertext">3 / 6</div>
-                        <img src="img_desc_sale/c5.jpg" style="width:100%">
-                    </div>
-                    <div class="Slides">
-                        <div class="numbertext">4 / 6</div>
-                        <img src="img_desc_sale/c4.jpg" style="width:100%">
-                    </div>
-                    <div class="Slides">
-                        <div class="numbertext">5 / 6</div>
-                        <img src="img_desc_sale/c3.jpg" style="width:100%">
-                    </div>
-                    <div class="Slides">
-                        <div class="numbertext">6 / 6</div>
-                        <img src="img_desc_sale/c2.jpg" style="width:100%">
-                    </div>
+                    @foreach($sale->images as $img)
+                        <div class="Slides">
+                            <!--<div class="numbertext">1 / 6</div> -->
+                            <img src="/img_desc_sale/{{$img['img']}}" style="width:100%">
+                        </div>
+                    @endforeach
                     <a class="prev" onclick="plusSlides(-1)">❮</a>
                     <a class="next" onclick="plusSlides(1)">❯</a>
                     <div class="caption-container">
                         <p id="caption"></p>
                     </div>
                     <div class="row-2">
-                        <div class="column-2">
-                            <img class="demo cursor" src="img_desc_sale/d1.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
-                        </div>
-                        <div class="column-2">
-                            <img class="demo cursor" src="img_desc_sale/c2.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
-                        </div>
-                        <div class="column-2">
-                            <img class="demo cursor" src="img_desc_sale/d3.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
-                        </div>
-                        <div class="column-2">
-                            <img class="demo cursor" src="img_desc_sale/d4.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
-                        </div>
-                        <div class="column-2">
-                            <img class="demo cursor" src="img_desc_sale/d5.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
-                        </div>
-                        <div class="column-2">
-                            <img class="demo cursor" src="img_desc_sale/d6.jpg" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
-                        </div>
+                        @foreach($sale->images as $img)
+                            <div class="column-2">
+                                <img class="demo cursor" src="/img_desc_sale/{{$img['img']}}" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -106,10 +75,10 @@
                     <div class="proposition">
                         <div class="card-text">Вибрана пропозиція</div>
                         <div class="cards card3">
-                            <img src="./img/{{$sale->images[0]['img']}}">
+                            <img src="./img_desc_sale/{{$sale->images[0]['img']}}">
                             <div class="cards-text">
                                 <h2>{{$sale->hotel}}</h2>
-                                <h1>ЗАМІСТЬ <span class="lineThrough">15 399 UAH</span></h1>
+                                <h1>ЗАМІСТЬ <span class="lineThrough">{{$sale->old_price}} UAH</span></h1>
 
                                 <div class="parent"><div class="border_text">{{$sale->price}}</div></div>
 
@@ -119,17 +88,19 @@
                     </div>
                     <div class="contact-info">
                         <div class="card-text">Ваші контакти</div>
-                        <form>
+                        <form action="{{route('application-data-special_offer', $sale->id)}}" method="POST">
+                            @csrf
+                            @include('inc.messages')
                             <div class="row-4">
                                 <div class="col-25">
                                     <label for="fname">Ім’я*</label>
-                                    <input type="text" id="fname" name="firstname" placeholder="Ведіть ваше ім’я">
+                                    <input type="text" id="name" name="name" placeholder="Ведіть ваше ім’я">
                                 </div>
                             </div>
                             <div class="row-4">
                                 <div class="col-25">
-                                    <label for="fname">Телефон*</label>
-                                    <input type="text" id="fname" name="firstname" placeholder="Ведіть ваш телефон">
+                                    <label for="fname">Email*</label>
+                                    <input type="text" id="phone" name="email" value="{{ old('email') }}" placeholder="Email*">
                                 </div>
                             </div>
                             <div class="row-4">

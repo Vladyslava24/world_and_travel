@@ -1,4 +1,4 @@
-@extends('layouts.containers')
+@extends('layouts.app_dark')
 
 @section('title')
     Всі заявки
@@ -74,3 +74,4 @@
         <div class="space"></div>
     </div>
 @endsection
+

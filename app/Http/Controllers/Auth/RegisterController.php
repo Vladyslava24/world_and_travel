@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -54,6 +55,15 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+    }
+
+
+    public function messages(){
+        return [
+            'name.required' => 'Поле им я є обов язковим',
+            'email.required' => 'Поле email є обов язковим',
+            'password.required' => 'Поле пароль є обов язковим',
+        ];
     }
 
     /**
